@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Response } from '@angular/http';
 import { ApiService } from './api.service';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-root',
@@ -14,11 +15,11 @@ export class AppComponent{
     isDone: false,
     hasAttachment: false
   }];
-
+  data: any = {};
   constructor(private apiService: ApiService){}
 
   onSave() {
-    this.apiService.storeServers(this.todos)
+    this.apiService.storeTodos(this.todos)
       .subscribe(
         (response) => console.log(response),
         (error) => console.log(error)
@@ -32,17 +33,19 @@ export class AppComponent{
       isDone: false,
       hasAttachment: false
     })
+    console.log(this.todos);
   }
-  
+
+  onGetData(){
+    return this.apiService.getSetupTodos()
+      .map((res: Response) => res.json())
+  }
+
+  onGetSetupTodos(){
+    this.onGetData()
+      .subscribe((data) => {
+        console.log(data);
+        this.data = data;
+      })
+  }
 }
-
-
-/*storeServers(servers: any[]) {
-    const headers = new Headers({'Content-Type': 'application/json'});
-    // return this.http.post('https://ng-server-test.firebaseio.com/data.json',
-    //   servers,
-    //   {headers: headers});
-    return this.http.put('https://udemy-ng-http.firebaseio.com/data.json',
-      servers,
-      {headers: headers});
-  }*/

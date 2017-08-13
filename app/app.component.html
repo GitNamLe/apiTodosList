@@ -2,13 +2,22 @@
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <input type="text" #todoTask>
-      <button class="btn btn-primary" (click)="onAddTodo(todoTask.value)">Add Server</button>
+      <button class="btn btn-primary" (click)="onAddTodo(todoTask.value)">Add Task</button>
       <br>
-      <button class="btn btn-primary" (click)="onSave()">Save Servers</button>
+      <button class="btn btn-primary" (click)="onSave()">Save Tasks</button>
       <br>
-      <ul class="list-group" *ngFor="let todo of todos">
+      <button class="btn btn-primary" (click)="onGetSetupTodos()" >Get Todos</button>
+      <ng-container *ngFor="let todo of todos">
         <li class="list-group-item">username:{{ todo.username }} needs to {{ todo.todo }}</li>
-      </ul>
+      </ng-container>
     </div>
+  </div>
+  <div class="todos">
+    <ng-container *ngFor="let dataEl of data">
+      <h2>{{ dataEl.username }}</h2>
+      <h3>{{ dataEl.todo }}</h3>
+      <h3>{{ dataEl.isDone }}</h3>
+      <p>-------------------------</p>
+    </ng-container>
   </div>
 </div>
