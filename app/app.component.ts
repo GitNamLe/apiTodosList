@@ -16,14 +16,15 @@ export class AppComponent{
     hasAttachment: false
   }];
   data: any = {};
+  todosAdded: string;
   constructor(private apiService: ApiService){}
 
   onSave() {
     this.apiService.storeTodos(this.todos)
       .subscribe(
-        (response) => console.log(response),
-        (error) => console.log(error)
-      );
+        error => alert(error),
+        () => console.log('finished')
+      )
   }
 
   onAddTodo(todo: string){
@@ -36,16 +37,10 @@ export class AppComponent{
     console.log(this.todos);
   }
 
-  onGetData(){
-    return this.apiService.getSetupTodos()
-      .map((res: Response) => res.json())
-  }
-
-  onGetSetupTodos(){
-    this.onGetData()
-      .subscribe((data) => {
-        console.log(data);
-        this.data = data;
-      })
+  onGetTodos(){
+    return this.apiService.getTodos()
+      .subscribe(
+        (data) => this.data = data
+      )
   }
 }

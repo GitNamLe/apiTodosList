@@ -5,8 +5,9 @@
       <button class="btn btn-primary" (click)="onAddTodo(todoTask.value)">Add Task</button>
       <br>
       <button class="btn btn-primary" (click)="onSave()">Save Tasks</button>
+      <p>{{todosAdded}}</p>
       <br>
-      <button class="btn btn-primary" (click)="onGetSetupTodos()" >Get Todos</button>
+      <button class="btn btn-primary" (click)="onGetTodos()" >Get Todos</button>
       <ng-container *ngFor="let todo of todos">
         <li class="list-group-item">username:{{ todo.username }} needs to {{ todo.todo }}</li>
       </ng-container>
