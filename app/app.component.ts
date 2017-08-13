@@ -9,12 +9,7 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
-  todos =[{
-    username: "test",
-    todo: "just do it",
-    isDone: false,
-    hasAttachment: false
-  }];
+  todos: {};
   data: any = {};
   todosAdded: string;
   constructor(private apiService: ApiService){}
@@ -28,12 +23,12 @@ export class AppComponent{
   }
 
   onAddTodo(todo: string){
-    this.todos.push({
+    this.todos = {
       username: "test",
       todo: todo,
       isDone: false,
       hasAttachment: false
-    })
+    }
     console.log(this.todos);
   }
 

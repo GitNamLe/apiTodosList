@@ -5,7 +5,7 @@ import { Headers, Http, Response } from '@angular/http';
 export class ApiService {
     constructor(private http: Http){}
 
-    storeTodos(todos: any[]){
+    storeTodos(todos: {}){
         return this.http.post("http://localhost:3000/api/todo", todos)
             .map(res => res.json());
     }
